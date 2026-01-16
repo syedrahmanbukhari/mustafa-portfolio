@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Syed Mustafa Danish — Graphic Designer</title>
+  <meta name="description" content="Creative professional crafting visually engaging designs and high-quality videos with strong aesthetics, smooth storytelling, and modern creative tools." />
+  <meta property="og:title" content="Syed Mustafa Danish— Portfolio" />
+  <meta property="og:description" content="Creative professional crafting visually engaging designs and high-quality videos with strong aesthetics, smooth storytelling, and modern creative tools." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%236C63FF'/><text x='50' y='62' font-size='58' text-anchor='middle' fill='white' font-family='Arial'>S</text></svg>">
+  
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            primary: {
+              DEFAULT: '#6C63FF',
+              50: '#f0f0ff',
+              100: '#e4e4ff',
+              200: '#c9c7ff',
+              300: '#a9a3ff',
+              400: '#8a7eff',
+              500: '#6C63FF',
+              600: '#564fe0',
+              700: '#423cc0',
+              800: '#2f2a99',
+              900: '#211d73',
+            },
+          },
+          boxShadow: {
+            'soft': '0 10px 30px rgba(0,0,0,0.08)'
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root { --radius: 1.25rem; }
+    .glass { backdrop-filter: blur(10px); background: linear-gradient(120deg, rgba(255,255,255,.8), rgba(255,255,255,.6)); }
+    .dark .glass { background: linear-gradient(120deg, rgba(22,22,28,.7), rgba(22,22,28,.5)); }
+    .magnetic { transition: transform .1s ease; will-change: transform; }
+    .tilt {
+      transform-style: preserve-3d; perspective: 1000px;
+    }
+    .tilt > * { transform: translateZ(20px); }
+    /* Preloader */
+    #preloader { position: fixed; inset: 0; display: grid; place-items: center; background: white; z-index: 9999; }
+    .dark #preloader { background: #0b0b12; }
+    .spinner { width: 64px; height: 64px; border: 6px solid rgba(0,0,0,.1); border-top-color: #6C63FF; border-radius: 50%; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+
+<body class="font-sans bg-white text-slate-800 dark:bg-[#0b0b12] dark:text-slate-100">
+  <!-- Preloader -->
+  <div id="preloader" aria-hidden="true">
+    <div class="flex flex-col items-center gap-4">
+      <div class="spinner"></div>
+      <div class="text-sm tracking-widest uppercase">DANI</div>
+    </div>
+  </div>
+
+  <!-- Background accents -->
+  <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-24 -left-24 w-[36rem] h-[36rem] rounded-full blur-3xl opacity-30 bg-primary-300 dark:bg-primary-700"></div>
+    <div class="absolute -bottom-24 -right-24 w-[32rem] h-[32rem] rounded-full blur-3xl opacity-30 bg-fuchsia-300 dark:bg-fuchsia-700"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-[#0b0b12]/60 border-b border-slate-200/60 dark:border-slate-700/60">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <a href="#" class="flex items-center gap-2 font-bold text-lg tracking-tight">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-2xl bg-primary-500 text-white mr-4">Dani</span>
+          <span>Syed Muhammad Mustafa Danish</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#about" class="hover:text-primary-600 dark:hover:text-primary-300">About</a>
+          <a href="#skills" class="hover:text-primary-600 dark:hover:text-primary-300">Skills</a>
+          <a href="#projects" class="hover:text-primary-600 dark:hover:text-primary-300">Projects</a>
+          <a href="#education" class="hover:text-primary-600 dark:hover:text-primary-300">Education</a>
+          <a href="#resume" class="hover:text-primary-600 dark:hover:text-primary-300">Resume</a>
+          <a href="#contact" class="hover:text-primary-600 dark:hover:text-primary-300">Contact</a>
+        </nav>
+        <div class="flex items-center gap-2">
+          <button id="themeToggle" class="magnetic rounded-2xl border border-slate-200 dark:border-slate-700 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Toggle dark mode">🌓</button>
+          <button id="menuBtn" class="md:hidden rounded-2xl border border-slate-200 dark:border-slate-700 p-2">☰</button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="md:hidden hidden border-t border-slate-200 dark:border-slate-700">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex flex-col gap-2 text-sm">
+        <a href="#about" class="py-2">About</a>
+        <a href="#skills" class="py-2">Skills</a>
+        <a href="#projects" class="py-2">Projects</a>
+        <a href="#education" class="py-2">Education</a>
+        <a href="#resume" class="py-2">Resume</a>
+        <a href="#contact" class="py-2">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 items-center gap-10 py-16 lg:py-24">
+        <div>
+          <p class="text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400">Graphic Designer</p>
+          <h1 class="mt-3 text-4xl sm:text-5xl font-extrabold leading-tight">
+            <span class="bg-gradient-to-r from-primary-600 via-fuchsia-500 to-rose-500 bg-clip-text text-transparent">I create fast, high-impact digital experiences through design and video.</span>
+            <span class="block mt-2" id="typewrite"></span>
+          </h1>
+          <p class="mt-4 text-slate-600 dark:text-slate-300 max-w-xl">I create clean digital experiences using Photoshop, Illustrator, and Premiere Pro, with strong problem-solving and attention to detail.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#projects" class="magnetic rounded-2xl bg-primary-600 text-white px-5 py-3 shadow-soft hover:translate-y-[-2px] hover:shadow-lg">View Projects</a>
+            <a href="#contact" class="magnetic rounded-2xl border border-slate-300 dark:border-slate-700 px-5 py-3 hover:bg-slate-100 dark:hover:bg-slate-800">Hire Me</a>
+            <a href="#resume" class="magnetic rounded-2xl border border-primary-600 text-primary-700 dark:text-primary-300 px-5 py-3 hover:bg-primary-50 dark:hover:bg-primary-900/20">Download CV</a>
+          </div>
+          <div class="mt-10 flex gap-8 text-sm text-slate-500 dark:text-slate-400">
+            <div class="counter" data-target="1">
+              <div class="text-3xl font-bold text-slate-900 dark:text-white" data-count>0</div>
+              <div>Years Designing</div>
+            </div>
+            <div class="counter" data-target="6">
+              <div class="text-3xl font-bold text-slate-900 dark:text-white" data-count>0</div>
+              <div>Projects</div>
+            </div>
+            <div class="counter" data-target="5">
+              <div class="text-3xl font-bold text-slate-900 dark:text-white" data-count>0</div>
+              <div>Design Tools</div>
+            </div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="glass rounded-[var(--radius)] p-2 shadow-soft">
+            <img src="my profile.jpeg" alt="Profile placeholder" class="rounded-[calc(var(--radius)-.5rem)] object-cover aspect-square w-full max-w-md mx-auto" />
+          </div>
+          <div class="absolute -z-10 -top-6 -right-6 w-40 h-40 rounded-3xl bg-primary-400/30 blur-2xl"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-6">
+          <h2 class="text-3xl font-bold">About</h2>
+          <p class="mt-4 text-slate-600 dark:text-slate-300">I’m <strong>Syed Muhammad Mustafa Danish</strong>, A detail-oriented creative professional delivering high-quality designs and videos with strong <strong>Photoshop</strong>, <strong>Illustrator</strong>, and <strong>Premiere Pro</strong> expertise.</p>
+          <p class="mt-4 text-slate-600 dark:text-slate-300">When I’m not designing or editing videos, you’ll find me gaming, traveling, and exploring new creative tools and ideas</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <span class="rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300 px-3 py-1 text-xs">Problem Solving</span>
+            <span class="rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300 px-3 py-1 text-xs">Photoshop</span>
+            <span class="rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300 px-3 py-1 text-xs">Illustrator</span>
+            <span class="rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300 px-3 py-1 text-xs">Premiere Pro</span>
+          </div>
+        </div>
+        <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+          <div class="glass rounded-2xl p-5 shadow-soft">
+            <div class="text-3xl font-bold">Photoshop</div>
+            <div class="text-sm text-slate-500 dark:text-slate-400">Editing • Animation</div>
+          </div>
+          <div class="glass rounded-2xl p-5 shadow-soft">
+            <div class="text-3xl font-bold">Illustrator</div>
+            <div class="text-sm text-slate-500 dark:text-slate-400">Design • Vector</div>
+          </div>
+          <div class="glass rounded-2xl p-5 shadow-soft">
+            <div class="text-3xl font-bold">Premiere Pro</div>
+            <div class="text-sm text-slate-500 dark:text-slate-400">Editing • Motion Graphics</div>
+          </div>
+          <div class="glass rounded-2xl p-5 shadow-soft">
+            <div class="text-3xl font-bold">Corel Draw</div>
+            <div class="text-sm text-slate-500 dark:text-slate-400">Design • Vector</div>
+          </div>
+          <div class="glass rounded-2xl p-5 shadow-soft">
+            <div class="text-3xl font-bold">After Effects</div>
+            <div class="text-sm text-slate-500 dark:text-slate-400">Design • Vector</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold">Skills</h2>
+      <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Tools -->
+        <div class="tilt rounded-2xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-soft">
+          <h3 class="font-semibold mb-3">Tools</h3>
+          <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+            <li>• Photoshop</li>
+            <li>• Illustrator</li>
+            <li>• Premiere Pro</li>
+          </ul>
+        </div>
+        <!-- Frameworks -->
+        <div class="tilt rounded-2xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-soft">
+          <h3 class="font-semibold mb-3">Video & Animation</h3>
+          <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+            <li>• Premiere</li>
+            <li>• Motion</li>
+            <li>• After Effects</li>
+          </ul>
+        </div>
+        <!-- Editing & Effects -->
+        <div class="tilt rounded-2xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-soft">
+          <h3 class="font-semibold mb-3">Editing & Effects</h3>
+          <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+            <li>• Retouching</li>
+            <li>• Coloring</li>
+            <li>• Compositing</li>
+          </ul>
+        </div>
+        <!-- Productivity Tools -->
+        <div class="tilt rounded-2xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-soft">
+          <h3 class="font-semibold mb-3">Productivity Tools</h3>
+          <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+            <li>• Photoshop Shortcuts</li>
+            <li>• Adobe Libraries</li>
+            <li>• File Management</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between gap-4">
+        <h2 class="text-3xl font-bold">Projects</h2>
+        <a href="#contact" class="text-sm underline underline-offset-4">Need something similar? → Hire me</a>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Lux -->
+        <article class="project-card tilt group rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-soft bg-white/70 dark:bg-white/5">
+          <div class="relative">
+            <img src="/lux.jpeg" alt="Lux creative design project" class="h-48 w-full object-cover"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+          </div>
+          <div class="p-5">
+            <h3 class="font-semibold text-lg">Lux — Creative Design Project</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
+              A visually stunning project crafted using <strong>Photoshop</strong>, <strong>Illustrator</strong>, and <strong>Premiere Pro</strong>, combining engaging graphics, smooth animations, and modern visual storytelling.
+            </p>
+            <ul class="mt-3 text-sm list-disc list-inside text-slate-600 dark:text-slate-300 space-y-1">
+              <li>High-quality image composition and retouching</li>
+              <li>Vector-based graphics and illustration work</li>
+              <li>Video edits with smooth transitions and effects</li>
+            </ul>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs">
+              <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1">Photoshop</span>
+              <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1">Illustrator</span>
+              <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1">Premiere Pro</span>
+            </div>
+            <div class="mt-4 flex items-center gap-3 text-sm">
+              <a href="#" class="magnetic inline-flex items-center gap-1 rounded-xl border border-slate-300 dark:border-slate-700 px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-800">Portfolio</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Cafe -->
+        <article class="project-card tilt group rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-soft bg-white/70 dark:bg-white/5">
+          <div class="relative">
+            <img src="/cafe.jpeg" alt="cafe marketing project" class="h-48 w-full object-cover"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+          </div>
+          <div class="p-5">
+              <h3 class="font-semibold text-lg">Cafe Delight — Sip & Savor</h3>
+              <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
+                Engaging marketing visuals for a cozy cafe, highlighting signature drinks and treats, crafted to attract customers with mouth-watering images and vibrant branding.
+              </p>
+              <ul class="mt-3 text-sm list-disc list-inside text-slate-600 dark:text-slate-300 space-y-1">
+                <li>High-quality product photography and edits</li>
+                <li>Vibrant social media graphics</li>
+                <li>Promotional posters and digital banners</li>
+              </ul>
+              <div class="mt-4 flex flex-wrap gap-2 text-xs">
+                <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1"><strong>Photoshop</strong></span>
+                <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1"><strong>Illustrator</strong></span>
+                <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1"><strong>Canva</strong></span>
+              </div>
+              <div class="mt-4 flex items-center gap-3 text-sm">
+                <a href="#" class="magnetic inline-flex items-center gap-1 rounded-xl border border-slate-300 dark:border-slate-700 px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-800">View Portfolio</a>
+              </div>
+            </div>
+        </article>
+
+        <!-- School Admissions -->
+        <article class="project-card tilt group rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-soft bg-white/70 dark:bg-white/5">
+          <div class="relative">
+            <img src="/admission.jpeg" alt="School Admissions" class="h-48 w-full object-cover"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+          </div>
+          <div class="p-5">
+              <h3 class="font-semibold text-lg">Bright Future School — Admissions Open</h3>
+              <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
+                Creative marketing visuals for <strong>Bright Future School</strong>, showcasing campus life, facilities, and programs to attract new students for the upcoming academic year.
+              </p>
+              <ul class="mt-3 text-sm list-disc list-inside text-slate-600 dark:text-slate-300 space-y-1">
+                <li>Engaging posters highlighting school programs</li>
+                <li>Social media graphics for admission campaigns</li>
+                <li>Photoshopped banners featuring campus and activities</li>
+              </ul>
+              <div class="mt-4 flex flex-wrap gap-2 text-xs">
+                <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1"><strong>Photoshop</strong></span>
+                <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1"><strong>Illustrator</strong></span>
+                <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1"><strong>Canva</strong></span>
+              </div>
+              <div class="mt-4 flex items-center gap-3 text-sm">
+                <a href="#" class="magnetic inline-flex items-center gap-1 rounded-xl border border-slate-300 dark:border-slate-700 px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-800">View Portfolio</a>
+              </div>
+            </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold">Education</h2>
+      <ol class="mt-8 relative border-l border-slate-200 dark:border-slate-700">
+        <li class="mb-10 ml-6">
+          <span class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary-500 text-white">1</span>
+          <h3 class="text-lg font-semibold">Diploma in Graphic Designing —  Hunor foundation collage Kharian <span class="text-slate-500 dark:text-slate-400">(2025–2025)</span></h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300">Comprehensive training in graphic design principles and software.</p>
+        </li>
+        <li class="mb-10 ml-6">
+          <span class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary-500 text-white">2</span>
+          <h3 class="text-lg font-semibold">Intermediate in FA (IT) — Aspire College Kharian <span class="text-slate-500 dark:text-slate-400">(2022–2024)</span></h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300">Foundation in programming and mathematics.</p>
+        </li>
+        <li class="ml-6">
+          <span class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary-500 text-white">3</span>
+          <h3 class="text-lg font-semibold">Matriculation in Computer Science — Ghazali public school <span class="text-slate-500 dark:text-slate-400">(2020–2022)</span></h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300">Computer science track.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Resume -->
+  <section id="resume" class="py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between">
+        <h2 class="text-3xl font-bold">Resume</h2>
+        <a href="My Resume.pdf" download class="magnetic rounded-2xl bg-primary-600 text-white px-5 py-3 shadow-soft">Download PDF</a>
+      </div>
+      <div class="mt-6 rounded-2xl border border-slate-200 dark:border-slate-800 p-4">
+        <iframe src="My Resume.pdf" class="w-full h-96 rounded-xl" title="Resume Preview"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10">
+        <div>
+          <h2 class="text-3xl font-bold">Let’s work together</h2>
+          <p class="mt-4 text-slate-600 dark:text-slate-300">I’m open for internships, freelance, and junior Graphic Designer roles. Email me or reach me on socials.</p>
+          <div class="mt-6 space-y-2 text-sm">
+            <div>📧 <a class="underline" href="mailto:Mustafadanish040@gmail.com">Mustafadanish040@gmail.com</a></div>
+            <div>📱 <a class="underline" href="tel:+923141845728">+92 314 1845728</a></div>
+          </div>
+          <div class="mt-6 flex gap-3 text-sm">
+            <a class="magnetic rounded-xl border border-slate-300 dark:border-slate-700 px-3 py-2" href="" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="magnetic rounded-xl border border-slate-300 dark:border-slate-700 px-3 py-2" href="" target="_blank" rel="noopener">Twitter</a>
+            <a class="magnetic rounded-xl border border-slate-300 dark:border-slate-700 px-3 py-2" href="" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+        <form class="glass rounded-2xl p-6 shadow-soft" action="#" method="POST" onsubmit="event.preventDefault(); alert('Form submitted! Replace with Formspree/Web3Forms.');">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm mb-1">Name</label>
+              <input required type="text" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-white/5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-400"/>
+            </div>
+            <div>
+              <label class="block text-sm mb-1">Email</label>
+              <input required type="email" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-white/5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-400"/>
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-sm mb-1">Message</label>
+              <textarea required rows="5" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-white/5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-400"></textarea>
+            </div>
+          </div>
+          <button class="magnetic mt-4 rounded-2xl bg-primary-600 text-white px-5 py-3 shadow-soft">Send message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-10 border-t border-slate-200 dark:border-slate-800">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+      <div>© <span id="year"></span> Syed Mustafa Danish</div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Preloader =====
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('preloader').style.opacity = '0';
+        setTimeout(() => document.getElementById('preloader').style.display = 'none', 300);
+      }, 500);
+    });
+
+    // ===== Theme Toggle (persist) =====
+    const themeToggle = document.getElementById('themeToggle');
+    const userPref = localStorage.getItem('theme');
+    if (userPref === 'dark' || (!userPref && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+    themeToggle.addEventListener('click', () => {
+      const d = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', d ? 'dark' : 'light');
+    });
+
+    // ===== Mobile Nav =====
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      document.getElementById('mobileNav').classList.toggle('hidden');
+    });
+
+    // ===== Typewriter =====
+    const typeEl = document.getElementById('typewrite');
+    const words = ['with creative layouts.', 'vector & illustration skills.', 'using modern design tools.'];
+    let idx = 0, ch = 0, dir = 1;
+    function type() {
+      typeEl.textContent = words[idx].slice(0, ch);
+      ch += dir;
+      if (ch === words[idx].length + 1) { dir = -1; setTimeout(type, 900); return; }
+      if (ch === 0) { dir = 1; idx = (idx + 1) % words.length; }
+      setTimeout(type, dir > 0 ? 45 : 25);
+    }
+    type();
+
+    // ===== Counters on view =====
+    const counters = document.querySelectorAll('.counter');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target.querySelector('[data-count]');
+        const target = +entry.target.dataset.target;
+        let current = 0;
+        const inc = Math.max(1, Math.ceil(target / 80));
+        const tick = () => {
+          current += inc;
+          if (current > target) current = target;
+          el.textContent = current;
+          if (current < target) requestAnimationFrame(tick);
+        }
+        tick();
+        observer.unobserve(entry.target);
+      })
+    }, { threshold: 0.6 });
+    counters.forEach(c => observer.observe(c));
+
+    // ===== Magnetic Buttons =====
+    const magnets = document.querySelectorAll('.magnetic');
+    magnets.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const r = btn.getBoundingClientRect();
+        const x = e.clientX - (r.left + r.width/2);
+        const y = e.clientY - (r.top + r.height/2);
+        btn.style.transform = `translate(${x*0.1}px, ${y*0.1}px)`;
+      });
+      btn.addEventListener('mouseleave', () => btn.style.transform = 'translate(0,0)');
+    });
+
+    // ===== Tilt cards =====
+    document.querySelectorAll('.tilt').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width * 2 - 1;
+        const y = (e.clientY - r.top) / r.height * 2 - 1;
+        card.style.transform = `rotateX(${-y * 6}deg) rotateY(${x * 6}deg)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateX(0) rotateY(0)';
+      });
+    });
+
+    // ===== GSAP reveals =====
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('section').forEach((sec, i) => {
+      gsap.fromTo(sec.querySelectorAll('h2, h1, p, .tilt, .project-card, .glass, img, a, ol, form'),
+        { y: 24, opacity: 0 },
+        { y: 0, opacity: 1, duration: .8, stagger: .05, ease: 'power2.out', scrollTrigger: { trigger: sec, start: 'top 80%' } }
+      );
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
