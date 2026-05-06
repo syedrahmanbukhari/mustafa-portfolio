@@ -3,516 +3,765 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Syed Mustafa Danish — Graphic Designer</title>
-  <meta name="description" content="Creative professional crafting visually engaging designs and high-quality videos with strong aesthetics, smooth storytelling, and modern creative tools." />
-  <meta property="og:title" content="Syed Mustafa Danish— Portfolio" />
-  <meta property="og:description" content="Creative professional crafting visually engaging designs and high-quality videos with strong aesthetics, smooth storytelling, and modern creative tools." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%236C63FF'/><text x='50' y='62' font-size='58' text-anchor='middle' fill='white' font-family='Arial'>S</text></svg>">
+  <title>Mirza Abdullah — Frontend Developer</title>
+  <meta name="description" content="Frontend Developer specializing in modern web applications with React, JavaScript, and responsive design." />
+  <meta property="og:title" content="Mirza Abdullah — Portfolio" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2310b981'/><text x='50' y='65' font-size='60' text-anchor='middle' fill='white' font-family='Arial'>A</text></svg>">
   
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
-          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          fontFamily: { 
+            sans: ['Poppins', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif']
+          },
           colors: {
             primary: {
-              DEFAULT: '#6C63FF',
-              50: '#f0f0ff',
-              100: '#e4e4ff',
-              200: '#c9c7ff',
-              300: '#a9a3ff',
-              400: '#8a7eff',
-              500: '#6C63FF',
-              600: '#564fe0',
-              700: '#423cc0',
-              800: '#2f2a99',
-              900: '#211d73',
+              50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac',
+              400: '#4ade80', 500: '#10b981', 600: '#059669', 700: '#047857',
+              800: '#065f46', 900: '#064e3b'
             },
-          },
-          boxShadow: {
-            'soft': '0 10px 30px rgba(0,0,0,0.08)'
-          },
+            accent: {
+              50: '#fef3c7', 100: '#fde68a', 200: '#fcd34d', 300: '#fbbf24',
+              400: '#f59e0b', 500: '#d97706', 600: '#b45309'
+            }
+          }
         }
       }
     }
   </script>
-
-  <!-- GSAP -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
+  
   <style>
-    :root { --radius: 1.25rem; }
-    .glass { backdrop-filter: blur(10px); background: linear-gradient(120deg, rgba(255,255,255,.8), rgba(255,255,255,.6)); }
-    .dark .glass { background: linear-gradient(120deg, rgba(22,22,28,.7), rgba(22,22,28,.5)); }
-    .magnetic { transition: transform .1s ease; will-change: transform; }
-    .tilt {
-      transform-style: preserve-3d; perspective: 1000px;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body { 
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
     }
-    .tilt > * { transform: translateZ(20px); }
+    
+    /* Smooth animations */
+    .fade-in { animation: fadeIn 0.8s ease-out; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .slide-in-left { animation: slideInLeft 0.6s ease-out; }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .slide-in-right { animation: slideInRight 0.6s ease-out; }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    /* Hover effects */
+    .hover-lift {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .hover-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
+    }
+    
+    /* Glass effect */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .dark .glass-card {
+      background: rgba(17, 24, 39, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    /* Section divider */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #10b981, transparent);
+      margin: 4rem 0;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    .dark ::-webkit-scrollbar-track { background: #1e293b; }
+    ::-webkit-scrollbar-thumb { 
+      background: linear-gradient(180deg, #10b981, #059669);
+      border-radius: 10px;
+    }
+    
     /* Preloader */
-    #preloader { position: fixed; inset: 0; display: grid; place-items: center; background: white; z-index: 9999; }
-    .dark #preloader { background: #0b0b12; }
-    .spinner { width: 64px; height: 64px; border: 6px solid rgba(0,0,0,.1); border-top-color: #6C63FF; border-radius: 50%; animation: spin 1s linear infinite; }
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
     @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 
-<body class="font-sans bg-white text-slate-800 dark:bg-[#0b0b12] dark:text-slate-100">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+  
   <!-- Preloader -->
-  <div id="preloader" aria-hidden="true">
-    <div class="flex flex-col items-center gap-4">
-      <div class="spinner"></div>
-      <div class="text-sm tracking-widest uppercase">DANI</div>
+  <div id="preloader">
+    <div class="text-center">
+      <div class="spinner mx-auto mb-4"></div>
+      <p class="text-white font-semibold tracking-wider">MIRZA</p>
     </div>
   </div>
 
-  <!-- Background accents -->
-  <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-    <div class="absolute -top-24 -left-24 w-[36rem] h-[36rem] rounded-full blur-3xl opacity-30 bg-primary-300 dark:bg-primary-700"></div>
-    <div class="absolute -bottom-24 -right-24 w-[32rem] h-[32rem] rounded-full blur-3xl opacity-30 bg-fuchsia-300 dark:bg-fuchsia-700"></div>
-  </div>
-
-  <!-- Header -->
-  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-[#0b0b12]/60 border-b border-slate-200/60 dark:border-slate-700/60">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex h-16 items-center justify-between">
-        <a href="#" class="flex items-center gap-2 font-bold text-lg tracking-tight">
-          <span class="inline-flex h-8 w-8 items-center justify-center rounded-2xl bg-primary-500 text-white mr-4">Dani</span>
-          <span>Syed Muhammad Mustafa Danish</span>
-        </a>
-        <nav class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#about" class="hover:text-primary-600 dark:hover:text-primary-300">About</a>
-          <a href="#skills" class="hover:text-primary-600 dark:hover:text-primary-300">Skills</a>
-          <a href="#projects" class="hover:text-primary-600 dark:hover:text-primary-300">Projects</a>
-          <a href="#education" class="hover:text-primary-600 dark:hover:text-primary-300">Education</a>
-          <a href="#resume" class="hover:text-primary-600 dark:hover:text-primary-300">Resume</a>
-          <a href="#contact" class="hover:text-primary-600 dark:hover:text-primary-300">Contact</a>
-        </nav>
-        <div class="flex items-center gap-2">
-          <button id="themeToggle" class="magnetic rounded-2xl border border-slate-200 dark:border-slate-700 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Toggle dark mode">🌓</button>
-          <button id="menuBtn" class="md:hidden rounded-2xl border border-slate-200 dark:border-slate-700 p-2">☰</button>
-        </div>
-      </div>
-    </div>
-    <!-- Mobile Nav -->
-    <div id="mobileNav" class="md:hidden hidden border-t border-slate-200 dark:border-slate-700">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex flex-col gap-2 text-sm">
-        <a href="#about" class="py-2">About</a>
-        <a href="#skills" class="py-2">Skills</a>
-        <a href="#projects" class="py-2">Projects</a>
-        <a href="#education" class="py-2">Education</a>
-        <a href="#resume" class="py-2">Resume</a>
-        <a href="#contact" class="py-2">Contact</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="relative overflow-hidden">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 items-center gap-10 py-16 lg:py-24">
-        <div>
-          <p class="text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400">Graphic Designer</p>
-          <h1 class="mt-3 text-4xl sm:text-5xl font-extrabold leading-tight">
-            <span class="bg-gradient-to-r from-primary-600 via-fuchsia-500 to-rose-500 bg-clip-text text-transparent">I create fast, high-impact digital experiences through design and video.</span>
-            <span class="block mt-2" id="typewrite"></span>
-          </h1>
-          <p class="mt-4 text-slate-600 dark:text-slate-300 max-w-xl">I create clean digital experiences using Photoshop, Illustrator, and Premiere Pro, with strong problem-solving and attention to detail.</p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#projects" class="magnetic rounded-2xl bg-primary-600 text-white px-5 py-3 shadow-soft hover:translate-y-[-2px] hover:shadow-lg">View Projects</a>
-            <a href="#contact" class="magnetic rounded-2xl border border-slate-300 dark:border-slate-700 px-5 py-3 hover:bg-slate-100 dark:hover:bg-slate-800">Hire Me</a>
-            <a href="#resume" class="magnetic rounded-2xl border border-primary-600 text-primary-700 dark:text-primary-300 px-5 py-3 hover:bg-primary-50 dark:hover:bg-primary-900/20">Download CV</a>
-          </div>
-          <div class="mt-10 flex gap-8 text-sm text-slate-500 dark:text-slate-400">
-            <div class="counter" data-target="1">
-              <div class="text-3xl font-bold text-slate-900 dark:text-white" data-count>0</div>
-              <div>Years Designing</div>
-            </div>
-            <div class="counter" data-target="6">
-              <div class="text-3xl font-bold text-slate-900 dark:text-white" data-count>0</div>
-              <div>Projects</div>
-            </div>
-            <div class="counter" data-target="5">
-              <div class="text-3xl font-bold text-slate-900 dark:text-white" data-count>0</div>
-              <div>Design Tools</div>
-            </div>
-          </div>
-        </div>
-        <div class="relative">
-          <div class="glass rounded-[var(--radius)] p-2 shadow-soft">
-            <img src="my profile.jpeg" alt="Profile placeholder" class="rounded-[calc(var(--radius)-.5rem)] object-cover aspect-square w-full max-w-md mx-auto" />
-          </div>
-          <div class="absolute -z-10 -top-6 -right-6 w-40 h-40 rounded-3xl bg-primary-400/30 blur-2xl"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-12 gap-10 items-center">
-        <div class="lg:col-span-6">
-          <h2 class="text-3xl font-bold">About</h2>
-          <p class="mt-4 text-slate-600 dark:text-slate-300">I’m <strong>Syed Muhammad Mustafa Danish</strong>, A detail-oriented creative professional delivering high-quality designs and videos with strong <strong>Photoshop</strong>, <strong>Illustrator</strong>, and <strong>Premiere Pro</strong> expertise.</p>
-          <p class="mt-4 text-slate-600 dark:text-slate-300">When I’m not designing or editing videos, you’ll find me gaming, traveling, and exploring new creative tools and ideas</p>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <span class="rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300 px-3 py-1 text-xs">Problem Solving</span>
-            <span class="rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300 px-3 py-1 text-xs">Photoshop</span>
-            <span class="rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300 px-3 py-1 text-xs">Illustrator</span>
-            <span class="rounded-full bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300 px-3 py-1 text-xs">Premiere Pro</span>
-          </div>
-        </div>
-        <div class="lg:col-span-6 grid grid-cols-2 gap-4">
-          <div class="glass rounded-2xl p-5 shadow-soft">
-            <div class="text-3xl font-bold">Photoshop</div>
-            <div class="text-sm text-slate-500 dark:text-slate-400">Editing • Animation</div>
-          </div>
-          <div class="glass rounded-2xl p-5 shadow-soft">
-            <div class="text-3xl font-bold">Illustrator</div>
-            <div class="text-sm text-slate-500 dark:text-slate-400">Design • Vector</div>
-          </div>
-          <div class="glass rounded-2xl p-5 shadow-soft">
-            <div class="text-3xl font-bold">Premiere Pro</div>
-            <div class="text-sm text-slate-500 dark:text-slate-400">Editing • Motion Graphics</div>
-          </div>
-          <div class="glass rounded-2xl p-5 shadow-soft">
-            <div class="text-3xl font-bold">Corel Draw</div>
-            <div class="text-sm text-slate-500 dark:text-slate-400">Design • Vector</div>
-          </div>
-          <div class="glass rounded-2xl p-5 shadow-soft">
-            <div class="text-3xl font-bold">After Effects</div>
-            <div class="text-sm text-slate-500 dark:text-slate-400">Design • Vector</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills -->
-  <section id="skills" class="py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold">Skills</h2>
-      <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <!-- Tools -->
-        <div class="tilt rounded-2xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-soft">
-          <h3 class="font-semibold mb-3">Tools</h3>
-          <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
-            <li>• Photoshop</li>
-            <li>• Illustrator</li>
-            <li>• Premiere Pro</li>
-          </ul>
-        </div>
-        <!-- Frameworks -->
-        <div class="tilt rounded-2xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-soft">
-          <h3 class="font-semibold mb-3">Video & Animation</h3>
-          <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
-            <li>• Premiere</li>
-            <li>• Motion</li>
-            <li>• After Effects</li>
-          </ul>
-        </div>
-        <!-- Editing & Effects -->
-        <div class="tilt rounded-2xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-soft">
-          <h3 class="font-semibold mb-3">Editing & Effects</h3>
-          <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
-            <li>• Retouching</li>
-            <li>• Coloring</li>
-            <li>• Compositing</li>
-          </ul>
-        </div>
-        <!-- Productivity Tools -->
-        <div class="tilt rounded-2xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-soft">
-          <h3 class="font-semibold mb-3">Productivity Tools</h3>
-          <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
-            <li>• Photoshop Shortcuts</li>
-            <li>• Adobe Libraries</li>
-            <li>• File Management</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects" class="py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex items-end justify-between gap-4">
-        <h2 class="text-3xl font-bold">Projects</h2>
-        <a href="#contact" class="text-sm underline underline-offset-4">Need something similar? → Hire me</a>
-      </div>
-
-      <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Lux -->
-        <article class="project-card tilt group rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-soft bg-white/70 dark:bg-white/5">
-          <div class="relative">
-            <img src="/lux.jpeg" alt="Lux creative design project" class="h-48 w-full object-cover"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
-          </div>
-          <div class="p-5">
-            <h3 class="font-semibold text-lg">Lux — Creative Design Project</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
-              A visually stunning project crafted using <strong>Photoshop</strong>, <strong>Illustrator</strong>, and <strong>Premiere Pro</strong>, combining engaging graphics, smooth animations, and modern visual storytelling.
-            </p>
-            <ul class="mt-3 text-sm list-disc list-inside text-slate-600 dark:text-slate-300 space-y-1">
-              <li>High-quality image composition and retouching</li>
-              <li>Vector-based graphics and illustration work</li>
-              <li>Video edits with smooth transitions and effects</li>
-            </ul>
-            <div class="mt-4 flex flex-wrap gap-2 text-xs">
-              <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1">Photoshop</span>
-              <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1">Illustrator</span>
-              <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1">Premiere Pro</span>
-            </div>
-            <div class="mt-4 flex items-center gap-3 text-sm">
-              <a href="#" class="magnetic inline-flex items-center gap-1 rounded-xl border border-slate-300 dark:border-slate-700 px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-800">Portfolio</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Cafe -->
-        <article class="project-card tilt group rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-soft bg-white/70 dark:bg-white/5">
-          <div class="relative">
-            <img src="/cafe.jpeg" alt="cafe marketing project" class="h-48 w-full object-cover"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
-          </div>
-          <div class="p-5">
-              <h3 class="font-semibold text-lg">Cafe Delight — Sip & Savor</h3>
-              <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
-                Engaging marketing visuals for a cozy cafe, highlighting signature drinks and treats, crafted to attract customers with mouth-watering images and vibrant branding.
-              </p>
-              <ul class="mt-3 text-sm list-disc list-inside text-slate-600 dark:text-slate-300 space-y-1">
-                <li>High-quality product photography and edits</li>
-                <li>Vibrant social media graphics</li>
-                <li>Promotional posters and digital banners</li>
-              </ul>
-              <div class="mt-4 flex flex-wrap gap-2 text-xs">
-                <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1"><strong>Photoshop</strong></span>
-                <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1"><strong>Illustrator</strong></span>
-                <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1"><strong>Canva</strong></span>
-              </div>
-              <div class="mt-4 flex items-center gap-3 text-sm">
-                <a href="#" class="magnetic inline-flex items-center gap-1 rounded-xl border border-slate-300 dark:border-slate-700 px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-800">View Portfolio</a>
-              </div>
-            </div>
-        </article>
-
-        <!-- School Admissions -->
-        <article class="project-card tilt group rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:shadow-soft bg-white/70 dark:bg-white/5">
-          <div class="relative">
-            <img src="/admission.jpeg" alt="School Admissions" class="h-48 w-full object-cover"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
-          </div>
-          <div class="p-5">
-              <h3 class="font-semibold text-lg">Bright Future School — Admissions Open</h3>
-              <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
-                Creative marketing visuals for <strong>Bright Future School</strong>, showcasing campus life, facilities, and programs to attract new students for the upcoming academic year.
-              </p>
-              <ul class="mt-3 text-sm list-disc list-inside text-slate-600 dark:text-slate-300 space-y-1">
-                <li>Engaging posters highlighting school programs</li>
-                <li>Social media graphics for admission campaigns</li>
-                <li>Photoshopped banners featuring campus and activities</li>
-              </ul>
-              <div class="mt-4 flex flex-wrap gap-2 text-xs">
-                <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1"><strong>Photoshop</strong></span>
-                <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1"><strong>Illustrator</strong></span>
-                <span class="rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-1"><strong>Canva</strong></span>
-              </div>
-              <div class="mt-4 flex items-center gap-3 text-sm">
-                <a href="#" class="magnetic inline-flex items-center gap-1 rounded-xl border border-slate-300 dark:border-slate-700 px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-800">View Portfolio</a>
-              </div>
-            </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Education -->
-  <section id="education" class="py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold">Education</h2>
-      <ol class="mt-8 relative border-l border-slate-200 dark:border-slate-700">
-        <li class="mb-10 ml-6">
-          <span class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary-500 text-white">1</span>
-          <h3 class="text-lg font-semibold">Diploma in Graphic Designing —  Hunor foundation collage Kharian <span class="text-slate-500 dark:text-slate-400">(2025–2025)</span></h3>
-          <p class="text-sm text-slate-600 dark:text-slate-300">Comprehensive training in graphic design principles and software.</p>
-        </li>
-        <li class="mb-10 ml-6">
-          <span class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary-500 text-white">2</span>
-          <h3 class="text-lg font-semibold">Intermediate in FA (IT) — Aspire College Kharian <span class="text-slate-500 dark:text-slate-400">(2022–2024)</span></h3>
-          <p class="text-sm text-slate-600 dark:text-slate-300">Foundation in programming and mathematics.</p>
-        </li>
-        <li class="ml-6">
-          <span class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary-500 text-white">3</span>
-          <h3 class="text-lg font-semibold">Matriculation in Computer Science — Ghazali public school <span class="text-slate-500 dark:text-slate-400">(2020–2022)</span></h3>
-          <p class="text-sm text-slate-600 dark:text-slate-300">Computer science track.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- Resume -->
-  <section id="resume" class="py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-6xl mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
-        <h2 class="text-3xl font-bold">Resume</h2>
-        <a href="My Resume.pdf" download class="magnetic rounded-2xl bg-primary-600 text-white px-5 py-3 shadow-soft">Download PDF</a>
+        <a href="#" class="flex items-center gap-3 group">
+          <img src="Aletter.png" alt="Logo" class="w-10 h-10 object-contain group-hover:scale-110 transition-all duration-300" />
+          <span class="font-display font-bold text-xl gradient-text">Mirza Abdullah</span>
+        </a>
+        
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#about" class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
+          <a href="#skills" class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Skills</a>
+          <a href="#projects" class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Projects</a>
+          <a href="#education" class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Education</a>
+          <a href="#contact" class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
+          <button id="themeToggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <span class="text-xl">🌓</span>
+          </button>
+        </div>
+        
+        <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
       </div>
-      <div class="mt-6 rounded-2xl border border-slate-200 dark:border-slate-800 p-4">
-        <iframe src="My Resume.pdf" class="w-full h-96 rounded-xl" title="Resume Preview"></iframe>
+      
+      <!-- Mobile Menu -->
+      <div id="mobileNav" class="hidden md:hidden pt-4 pb-2 space-y-2">
+        <a href="#about" class="block py-2 text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400">About</a>
+        <a href="#skills" class="block py-2 text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400">Skills</a>
+        <a href="#projects" class="block py-2 text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400">Projects</a>
+        <a href="#education" class="block py-2 text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400">Education</a>
+        <a href="#contact" class="block py-2 text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400">Contact</a>
       </div>
     </div>
-  </section>
+  </nav>
 
-  <!-- Contact -->
-  <section id="contact" class="py-20">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-10">
-        <div>
-          <h2 class="text-3xl font-bold">Let’s work together</h2>
-          <p class="mt-4 text-slate-600 dark:text-slate-300">I’m open for internships, freelance, and junior Graphic Designer roles. Email me or reach me on socials.</p>
-          <div class="mt-6 space-y-2 text-sm">
-            <div>📧 <a class="underline" href="mailto:Mustafadanish040@gmail.com">Mustafadanish040@gmail.com</a></div>
-            <div>📱 <a class="underline" href="tel:+923141845728">+92 314 1845728</a></div>
+  <!-- Hero Section -->
+  <section class="pt-32 pb-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        
+        <!-- Left Content -->
+        <div class="slide-in-left">
+          <div class="inline-block px-4 py-2 bg-primary-50 dark:bg-primary-900/30 rounded-full mb-6">
+            <span class="text-primary-600 dark:text-primary-400 text-sm font-semibold">👋 Welcome to my portfolio</span>
           </div>
-          <div class="mt-6 flex gap-3 text-sm">
-            <a class="magnetic rounded-xl border border-slate-300 dark:border-slate-700 px-3 py-2" href="" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="magnetic rounded-xl border border-slate-300 dark:border-slate-700 px-3 py-2" href="" target="_blank" rel="noopener">Twitter</a>
-            <a class="magnetic rounded-xl border border-slate-300 dark:border-slate-700 px-3 py-2" href="" target="_blank" rel="noopener">Instagram</a>
+          
+          <h1 class="font-display text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            Hi, I'm <span class="gradient-text">Mirza Abdullah</span>
+          </h1>
+          
+          <p class="text-xl text-slate-600 dark:text-slate-300 mb-4">Frontend Developer</p>
+          
+          <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+            I create beautiful, responsive web applications using modern technologies like React, JavaScript, and Tailwind CSS.
+          </p>
+          
+          <div class="flex flex-wrap gap-4 mb-10">
+            <a href="#projects" class="px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+              View Projects
+            </a>
+            <a href="#contact" class="px-8 py-3 border-2 border-primary-600 text-primary-600 dark:text-primary-400 rounded-xl font-semibold hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-300">
+              Contact Me
+            </a>
+          </div>
+          
+          <div class="flex gap-8">
+            <div>
+              <div class="text-3xl font-bold text-primary-600">3+</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400">Months Experience</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-primary-600">6+</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400">Projects Done</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold text-primary-600">5+</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400">Technologies</div>
+            </div>
           </div>
         </div>
-        <form class="glass rounded-2xl p-6 shadow-soft" action="#" method="POST" onsubmit="event.preventDefault(); alert('Form submitted! Replace with Formspree/Web3Forms.');">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm mb-1">Name</label>
-              <input required type="text" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-white/5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-400"/>
-            </div>
-            <div>
-              <label class="block text-sm mb-1">Email</label>
-              <input required type="email" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-white/5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-400"/>
-            </div>
-            <div class="sm:col-span-2">
-              <label class="block text-sm mb-1">Message</label>
-              <textarea required rows="5" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-white/5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-400"></textarea>
-            </div>
+        
+        <!-- Right Image -->
+        <div class="slide-in-right">
+          <div class="relative">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary-400 to-primary-600 rounded-3xl blur-2xl opacity-20"></div>
+            <img src="my profile.jpg" alt="Mirza Abdullah" class="relative rounded-3xl shadow-2xl w-full object-cover aspect-square border-4 border-white dark:border-slate-800" />
           </div>
-          <button class="magnetic mt-4 rounded-2xl bg-primary-600 text-white px-5 py-3 shadow-soft">Send message</button>
-        </form>
+        </div>
+        
       </div>
     </div>
   </section>
 
-  <footer class="py-10 border-t border-slate-200 dark:border-slate-800">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
-      <div>© <span id="year"></span> Syed Mustafa Danish</div>
+  <!-- About Section -->
+  <section id="about" class="py-20 px-6 bg-white dark:bg-slate-800/50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">
+          About <span class="gradient-text">Me</span>
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          Passionate about creating exceptional digital experiences
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="fade-in">
+          <h3 class="text-2xl font-bold mb-4">Frontend Developer & Designer</h3>
+          <p class="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+            I'm <strong class="text-primary-600 dark:text-primary-400">Mirza Abdullah</strong>, a detail-oriented frontend developer with expertise in building high-quality web applications. I specialize in HTML, CSS, JavaScript, and React.
+          </p>
+          <p class="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+            When I'm not coding, you'll find me gaming, traveling, and exploring new web development tools and frameworks. I'm always eager to learn and grow in this ever-evolving field.
+          </p>
+          
+          <div class="flex flex-wrap gap-3">
+            <span class="px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-lg text-sm font-medium">Problem Solving</span>
+            <span class="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-lg text-sm font-medium">Responsive Design</span>
+            <span class="px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-lg text-sm font-medium">UI/UX</span>
+            <span class="px-4 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-lg text-sm font-medium">Team Player</span>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4 fade-in">
+          <div class="glass-card p-6 rounded-2xl hover-lift">
+            <div class="text-4xl mb-3">💻</div>
+            <h4 class="font-semibold mb-2">Clean Code</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400">Writing maintainable and scalable code</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl hover-lift">
+            <div class="text-4xl mb-3">🎨</div>
+            <h4 class="font-semibold mb-2">Modern Design</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400">Creating beautiful user interfaces</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl hover-lift">
+            <div class="text-4xl mb-3">⚡</div>
+            <h4 class="font-semibold mb-2">Fast Performance</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400">Optimized for speed and efficiency</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl hover-lift">
+            <div class="text-4xl mb-3">📱</div>
+            <h4 class="font-semibold mb-2">Responsive</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400">Works on all devices seamlessly</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">
+          My <span class="gradient-text">Skills</span>
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          Technologies and tools I work with
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Frontend -->
+        <div class="glass-card p-8 rounded-2xl hover-lift fade-in">
+          <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center mb-4">
+            <span class="text-2xl">🎨</span>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Frontend</h3>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-600 dark:text-slate-300">HTML5</span>
+              <span class="text-primary-600 font-semibold">95%</span>
+            </div>
+            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full" style="width: 95%"></div>
+            </div>
+            
+            <div class="flex items-center justify-between">
+              <span class="text-slate-600 dark:text-slate-300">CSS3</span>
+              <span class="text-primary-600 font-semibold">90%</span>
+            </div>
+            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full" style="width: 90%"></div>
+            </div>
+            
+            <div class="flex items-center justify-between">
+              <span class="text-slate-600 dark:text-slate-300">JavaScript</span>
+              <span class="text-primary-600 font-semibold">85%</span>
+            </div>
+            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full" style="width: 85%"></div>
+            </div>
+            
+            <div class="flex items-center justify-between">
+              <span class="text-slate-600 dark:text-slate-300">React</span>
+              <span class="text-primary-600 font-semibold">80%</span>
+            </div>
+            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+              <div class="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full" style="width: 80%"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Frameworks -->
+        <div class="glass-card p-8 rounded-2xl hover-lift fade-in">
+          <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-4">
+            <span class="text-2xl">⚙️</span>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Frameworks</h3>
+          <ul class="space-y-3 text-slate-600 dark:text-slate-300">
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-primary-500 rounded-full"></span>
+              Bootstrap
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-primary-500 rounded-full"></span>
+              Tailwind CSS
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-primary-500 rounded-full"></span>
+              React.js
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-primary-500 rounded-full"></span>
+              Material UI
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Tools -->
+        <div class="glass-card p-8 rounded-2xl hover-lift fade-in">
+          <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center mb-4">
+            <span class="text-2xl">🛠️</span>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Tools</h3>
+          <ul class="space-y-3 text-slate-600 dark:text-slate-300">
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-primary-500 rounded-full"></span>
+              VS Code
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-primary-500 rounded-full"></span>
+              Git & GitHub
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-primary-500 rounded-full"></span>
+              Figma
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-primary-500 rounded-full"></span>
+              Photoshop
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 px-6 bg-white dark:bg-slate-800/50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">
+          Featured <span class="gradient-text">Projects</span>
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          Some of my recent work and creative projects
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Project 1 -->
+        <div class="glass-card rounded-2xl overflow-hidden hover-lift fade-in group">
+  <div class="relative overflow-hidden">
+    <img src="calendax.png" alt="Calendax Web App" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500" />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+  </div>
+
+  <div class="p-6">
+    <h3 class="text-xl font-bold mb-2">Calendax — Web App Landing Page</h3>
+
+    <p class="text-slate-600 dark:text-slate-300 text-sm mb-4">
+      Fully responsive landing page for Calendax web application built using React and Bootstrap. 
+      Designed with modern UI, smooth layout structure, and mobile-first approach for optimal user experience.
+    </p>
+
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-xs">React</span>
+      <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs">Bootstrap</span>
+      <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-xs">Responsive UI</span>
+    </div>
+
+    <a href="#" class="inline-flex items-center text-primary-600 dark:text-primary-400 font-semibold hover:gap-2 transition-all">
+      View Project 
+      <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+        
+        <!-- Project 2 -->
+        <div class="glass-card rounded-2xl overflow-hidden hover-lift fade-in group">
+  <div class="relative overflow-hidden">
+    <img src="expert.png" alt="Expert Web App" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500" />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+  </div>
+
+  <div class="p-6">
+    <h3 class="text-xl font-bold mb-2">Expert — Web App Dashboard</h3>
+
+    <p class="text-slate-600 dark:text-slate-300 text-sm mb-4">
+      Fully responsive web app page built using React and Bootstrap featuring dynamic tables and JavaScript mapping 
+      functionality for rendering real-time data with clean UI and smooth user experience.
+    </p>
+
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-xs">React</span>
+      <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs">Bootstrap</span>
+      <span class="px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-xs">JS Mapping</span>
+      <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-xs">Dynamic Tables</span>
+    </div>
+
+    <a href="#" class="inline-flex items-center text-primary-600 dark:text-primary-400 font-semibold hover:gap-2 transition-all">
+      View Project 
+      <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+        
+        <!-- Project 3 -->
+        <div class="glass-card rounded-2xl overflow-hidden hover-lift fade-in group">
+  <div class="relative overflow-hidden">
+    <img src="iptv.png" alt="IPTV Project" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500" />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+  </div>
+
+  <div class="p-6">
+    <h3 class="text-xl font-bold mb-2">IPTV Streaming Platform</h3>
+
+    <p class="text-slate-600 dark:text-slate-300 text-sm mb-4">
+      React-based IPTV web application with live TV streaming from multiple countries using APIs. 
+      Integrated custom media player to stream and control live channels with smooth UI and fully responsive design.
+    </p>
+
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-xs">React</span>
+      <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs">IPTV API</span>
+      <span class="px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-xs">Media Player</span>
+    </div>
+
+    <a href="#" class="inline-flex items-center text-primary-600 dark:text-primary-400 font-semibold hover:gap-2 transition-all">
+      View Project 
+      <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">
+          Education <span class="gradient-text">Journey</span>
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          My academic background and qualifications
+        </p>
+      </div>
+      
+      <div class="max-w-3xl mx-auto space-y-8">
+        
+        <!-- Education Item 1 -->
+        <div class="glass-card p-8 rounded-2xl hover-lift fade-in">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
+              <span class="text-2xl">🎓</span>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold mb-2">Bachelor's in Computer Science</h3>
+              <p class="text-primary-600 dark:text-primary-400 font-semibold mb-2">Govt College University Faisalabad</p>
+              <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">2021 — 2025</p>
+              <p class="text-slate-600 dark:text-slate-300">
+                Pursuing a degree in Computer Science with focus on software development, web technologies, and modern programming practices.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Education Item 2 -->
+        <div class="glass-card p-8 rounded-2xl hover-lift fade-in">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
+              <span class="text-2xl">📚</span>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold mb-2">Intermediate in Computer Science</h3>
+              <p class="text-primary-600 dark:text-primary-400 font-semibold mb-2">MA Jinnah College Jhelum</p>
+              <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">2019 — 2021</p>
+              <p class="text-slate-600 dark:text-slate-300">
+                Focused on foundational computer science concepts, programming fundamentals, and mathematics.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Education Item 3 -->
+        <div class="glass-card p-8 rounded-2xl hover-lift fade-in">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
+              <span class="text-2xl">📖</span>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold mb-2">Matriculation in Computer Science</h3>
+              <p class="text-primary-600 dark:text-primary-400 font-semibold mb-2">MA Jinnah School Jhelum</p>
+              <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">2017 — 2019</p>
+              <p class="text-slate-600 dark:text-slate-300">
+                Completed matriculation with strong foundation in computer science basics and core subjects.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 px-6 bg-white dark:bg-slate-800/50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">
+          Get In <span class="gradient-text">Touch</span>
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          Let's work together on your next project
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-12">
+        
+        <!-- Contact Info -->
+        <div class="fade-in">
+          <h3 class="text-2xl font-bold mb-6">Let's Connect</h3>
+          <p class="text-slate-600 dark:text-slate-300 mb-8">
+            I'm open for internships, freelance projects, and junior web developer roles. Feel free to reach out!
+          </p>
+          
+          <div class="space-y-4 mb-8">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center">
+                <span class="text-xl">📧</span>
+              </div>
+              <div>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Email</p>
+                <a href="mailto:mirxaabdullahmirxaabdullah@gmail.com" class="text-primary-600 dark:text-primary-400 font-semibold hover:underline">
+                  mirxaabdullahmirxaabdullah@gmail.com
+                </a>
+              </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center">
+                <span class="text-xl">📱</span>
+              </div>
+              <div>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Phone</p>
+                <a href="tel:+923101599418" class="text-primary-600 dark:text-primary-400 font-semibold hover:underline">
+                  +92 310 1599418
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex gap-4">
+            <a href="#" class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center hover:bg-primary-200 dark:hover:bg-primary-800/30 transition-colors">
+              <span class="text-xl">💼</span>
+            </a>
+            <a href="#" class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center hover:bg-primary-200 dark:hover:bg-primary-800/30 transition-colors">
+              <span class="text-xl">🐦</span>
+            </a>
+            <a href="#" class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center hover:bg-primary-200 dark:hover:bg-primary-800/30 transition-colors">
+              <span class="text-xl">📷</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="fade-in">
+          <form class="glass-card p-8 rounded-2xl space-y-6" onsubmit="event.preventDefault(); alert('Thank you! I will get back to you soon.');">
+            <div>
+              <label class="block text-sm font-semibold mb-2">Your Name</label>
+              <input type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all" placeholder="John Doe" />
+            </div>
+            
+            <div>
+              <label class="block text-sm font-semibold mb-2">Your Email</label>
+              <input type="email" required class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all" placeholder="john@example.com" />
+            </div>
+            
+            <div>
+              <label class="block text-sm font-semibold mb-2">Message</label>
+              <textarea required rows="5" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all resize-none" placeholder="Your message here..."></textarea>
+            </div>
+            
+            <button type="submit" class="w-full px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+              Send Message
+            </button>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 px-6 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-slate-600 dark:text-slate-400 text-sm">
+          © <span id="year"></span> Mirza Abdullah. All rights reserved.
+        </p>
+        <div class="flex items-center gap-6 text-sm">
+          <a href="#about" class="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
+          <a href="#projects" class="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Projects</a>
+          <a href="#contact" class="text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
+        </div>
+      </div>
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script>
-    // ===== Preloader =====
+    // Preloader
     window.addEventListener('load', () => {
       setTimeout(() => {
-        document.getElementById('preloader').style.opacity = '0';
-        setTimeout(() => document.getElementById('preloader').style.display = 'none', 300);
-      }, 500);
+        const preloader = document.getElementById('preloader');
+        preloader.style.opacity = '0';
+        setTimeout(() => preloader.style.display = 'none', 500);
+      }, 1000);
     });
 
-    // ===== Theme Toggle (persist) =====
+    // Theme Toggle
     const themeToggle = document.getElementById('themeToggle');
-    const userPref = localStorage.getItem('theme');
-    if (userPref === 'dark' || (!userPref && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
+    const html = document.documentElement;
+    
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      html.classList.add('dark');
     }
+    
     themeToggle.addEventListener('click', () => {
-      const d = document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', d ? 'dark' : 'light');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
     });
 
-    // ===== Mobile Nav =====
-    document.getElementById('menuBtn').addEventListener('click', () => {
-      document.getElementById('mobileNav').classList.toggle('hidden');
+    // Mobile Menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    menuBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('hidden');
     });
 
-    // ===== Typewriter =====
-    const typeEl = document.getElementById('typewrite');
-    const words = ['with creative layouts.', 'vector & illustration skills.', 'using modern design tools.'];
-    let idx = 0, ch = 0, dir = 1;
-    function type() {
-      typeEl.textContent = words[idx].slice(0, ch);
-      ch += dir;
-      if (ch === words[idx].length + 1) { dir = -1; setTimeout(type, 900); return; }
-      if (ch === 0) { dir = 1; idx = (idx + 1) % words.length; }
-      setTimeout(type, dir > 0 ? 45 : 25);
-    }
-    type();
+    // Close mobile menu on link click
+    document.querySelectorAll('#mobileNav a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.add('hidden');
+      });
+    });
 
-    // ===== Counters on view =====
-    const counters = document.querySelectorAll('.counter');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target.querySelector('[data-count]');
-        const target = +entry.target.dataset.target;
-        let current = 0;
-        const inc = Math.max(1, Math.ceil(target / 80));
-        const tick = () => {
-          current += inc;
-          if (current > target) current = target;
-          el.textContent = current;
-          if (current < target) requestAnimationFrame(tick);
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        tick();
-        observer.unobserve(entry.target);
-      })
-    }, { threshold: 0.6 });
-    counters.forEach(c => observer.observe(c));
-
-    // ===== Magnetic Buttons =====
-    const magnets = document.querySelectorAll('.magnetic');
-    magnets.forEach(btn => {
-      btn.addEventListener('mousemove', (e) => {
-        const r = btn.getBoundingClientRect();
-        const x = e.clientX - (r.left + r.width/2);
-        const y = e.clientY - (r.top + r.height/2);
-        btn.style.transform = `translate(${x*0.1}px, ${y*0.1}px)`;
       });
-      btn.addEventListener('mouseleave', () => btn.style.transform = 'translate(0,0)');
-    });
-
-    // ===== Tilt cards =====
-    document.querySelectorAll('.tilt').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width * 2 - 1;
-        const y = (e.clientY - r.top) / r.height * 2 - 1;
-        card.style.transform = `rotateX(${-y * 6}deg) rotateY(${x * 6}deg)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'rotateX(0) rotateY(0)';
-      });
-    });
-
-    // ===== GSAP reveals =====
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.utils.toArray('section').forEach((sec, i) => {
-      gsap.fromTo(sec.querySelectorAll('h2, h1, p, .tilt, .project-card, .glass, img, a, ol, form'),
-        { y: 24, opacity: 0 },
-        { y: 0, opacity: 1, duration: .8, stagger: .05, ease: 'power2.out', scrollTrigger: { trigger: sec, start: 'top 80%' } }
-      );
     });
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      observer.observe(el);
+    });
   </script>
 </body>
 </html>
